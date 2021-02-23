@@ -186,5 +186,24 @@ public extension Date {
         return nil
     }
 
+    func difference(date: Date) -> (year: Int,
+                                    month: Int,
+                                    day: Int,
+                                    hour: Int,
+                                    minute: Int,
+                                    second: Int) {
+        let diffs = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second],
+                                                    from: self, to: date)
+        guard let year = diffs.year,
+              let month = diffs.month,
+              let day = diffs.day,
+              let hour = diffs.hour,
+              let minute = diffs.minute,
+              let second = diffs.second
+        else {
+            return(0,0,0,0,0,0)
+        }
+        return(year, month, day, hour, minute, second)
+    }
     
 }
